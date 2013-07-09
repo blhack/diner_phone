@@ -5,6 +5,7 @@
 <script type="text/javascript">
 
 //this is bad javascript.  I know that.  I made it in about 10 minutes as a demo for my mom. 
+//also the password isn't a password, and also it doesn't use SSL.  Hack it, hackers.  My twilio account has about $5 in it.
 
 function send_sms(phone_number,password) {
 	$.post("http://blhack.me/labs/diner.cgi?number=" + phone_number + "&password=" + password, function(data) {
