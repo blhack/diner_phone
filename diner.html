@@ -1,0 +1,59 @@
+<html>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+//this is bad javascript.  I know that.  I made it in about 10 minutes as a demo for my mom. 
+
+function send_sms(phone_number,password) {
+	$.post("http://blhack.me/labs/diner.cgi?number=" + phone_number + "&password=" + password, function(data) {
+		console.log("Called " + phone_number);
+		});
+	}
+
+
+function phone_handler() {
+	var phone_number = document.getElementById("phone_number").value;
+	var password = document.getElementById("password").value;
+	send_sms(phone_number,password);
+	
+	document.getElementById("phone_number").value="";
+	document.getElementById("display").style.display = 'none';
+	phone_field = document.getElementById("phone_number");
+	phone_field.focus();
+	phone_field.select();
+	
+}
+	
+function startup() {
+
+	phone_field = document.getElementById("phone_number");
+	phone_field.focus();
+	phone_field.select();
+	$("#display").click(function() {
+		phone_handler();
+		});
+
+	}
+
+function send_button_handler() {
+	var phone_number = document.getElementById("phone_number").value;
+	if (phone_number.length == 10) {
+		document.getElementById("display").style.display = 'block';
+		}
+}
+
+</script>
+
+<body onload="startup()">
+
+<center>
+<input type="text" name="password" id="password" value="password" style="height:60; width:300; font-size:35px; text-align:center;" onClick="this.value='';">
+<br />
+<br />
+<input type="tel" name="phone_number" id="phone_number" value="Phone Number" onClick="this.value='';" onKeyUp="send_button_handler()" style="height:60; width:300; font-size:35px; text-align:center;"/>
+<div onClick="phone_handler" id="display" style="position:relative; top: 50px; width:150; height:40; font-size:35; text-align:center; padding-top:0px; background-color:#00ff00; display:none;">SEND</div>
+</center>
+
+</html>
